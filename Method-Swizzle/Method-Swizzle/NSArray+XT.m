@@ -10,12 +10,13 @@
 #import "XTRuntimeTool.h"
 #import <objc/runtime.h>
 
+/**
+ 
+ */
 @implementation NSArray (XT)
 + (void)load{
-    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
         [XTRuntimeTool xt_methodSwizzlingWithClass:objc_getClass("__NSArrayI") oriSEL:@selector(objectAtIndex:) swizzledSEL:@selector(lg_objectAtIndex:)];
         
         [XTRuntimeTool xt_methodSwizzlingWithClass:objc_getClass("__NSArrayI") oriSEL:@selector(objectAtIndexedSubscript:) swizzledSEL:@selector(lg_objectAtIndexedSubscript:)];

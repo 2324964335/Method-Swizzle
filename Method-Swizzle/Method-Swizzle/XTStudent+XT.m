@@ -19,10 +19,12 @@
         
     });
 }
-
-- (void)lg_studentInstanceMethod{
+//helloword(SEL) -->xt_studentInstanceMethod(IMP)
+//xt_studentInstanceMethod(SEL) -->helloword(IMP)
+//交换不成功。
+- (void)xt_studentInstanceMethod{
     NSLog(@"LGStudent分类添加的lg对象方法:%s",__func__);
-    [self lg_studentInstanceMethod];
+    [self xt_studentInstanceMethod];
 }
 
 @end

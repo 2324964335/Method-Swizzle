@@ -17,8 +17,8 @@
     });
 }
 
-- (void)lg_studentInstanceMethod{
-    [self lg_studentInstanceMethod];
+- (void)xt_studentInstanceMethod{
+    [self xt_studentInstanceMethod];
     NSLog(@"LGStudent分类添加的lg对象方法:%s",__func__);
 }
 @end

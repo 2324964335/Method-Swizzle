@@ -11,9 +11,7 @@
 
 @implementation XTRuntimeTool
 + (void)xt_methodSwizzlingWithClass:(Class)cls oriSEL:(SEL)oriSEL swizzledSEL:(SEL)swizzledSEL{
-    
     if (!cls) NSLog(@"传入的交换类不能为空");
-    
     Method oriMethod = class_getInstanceMethod(cls, oriSEL);
     Method swiMethod = class_getInstanceMethod(cls, swizzledSEL);
     method_exchangeImplementations(oriMethod, swiMethod);
@@ -21,9 +19,7 @@
 
 
 + (void)xt_betterMethodSwizzlingWithClass:(Class)cls oriSEL:(SEL)oriSEL swizzledSEL:(SEL)swizzledSEL{
-    
     if (!cls) NSLog(@"传入的交换类不能为空");
-    
     Method oriMethod = class_getInstanceMethod(cls, oriSEL);
     Method swiMethod = class_getInstanceMethod(cls, swizzledSEL);
         // 一般交换方法: 交换自己有的方法 -- 走下面 因为自己有意味添加方法失败
@@ -41,16 +37,13 @@
 
 
 + (void)xt_bestMethodSwizzlingWithClass:(Class)cls oriSEL:(SEL)oriSEL swizzledSEL:(SEL)swizzledSEL{
-    
     if (!cls) NSLog(@"传入的交换类不能为空");
-    
     Method oriMethod = class_getInstanceMethod(cls, oriSEL);
     Method swiMethod = class_getInstanceMethod(cls, swizzledSEL);
     if (!oriMethod) {
         class_addMethod(cls, oriSEL, method_getImplementation(swiMethod), method_getTypeEncoding(swiMethod));
         method_setImplementation(swiMethod, imp_implementationWithBlock(^(id self, SEL _cmd){ }));
     }
-    
     BOOL didAddMethod = class_addMethod(cls, oriSEL, method_getImplementation(swiMethod), method_getTypeEncoding(swiMethod));
     if (didAddMethod) {
         class_replaceMethod(cls, swizzledSEL, method_getImplementation(oriMethod), method_getTypeEncoding(oriMethod));

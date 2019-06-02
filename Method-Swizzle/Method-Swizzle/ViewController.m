@@ -7,7 +7,8 @@
 //
 
 #import "ViewController.h"
-
+#import "XTStudent+XT.h"
+#import "XTStudent.h"
 @interface ViewController ()
 
 @property (nonatomic, strong) NSArray *dataArray;
@@ -19,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    XTStudent * student = [[XTStudent alloc] init];
+    [student helloword];
 }
 
 - (void)test1 {
